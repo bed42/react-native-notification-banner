@@ -25,11 +25,11 @@ RCT_EXPORT_METHOD(Show:(NSDictionary *)props onClick:(RCTResponseSenderBlock)onC
     NSString *title = [props objectForKey: @"title"];
     NSNumber *titleSize = [props objectForKey: @"titleSize"];
     NSString *titleColorValue = [props objectForKey: @"titleColor"];
-
+    
     NSString *subTitle = [props objectForKey: @"subTitle"];
     NSNumber *subTitleSize = [props objectForKey: @"subTitleSize"];
-    NSString *subTitleColor = [props objectForKey: @"subTitleColor"];
-
+    NSString *subTitleColorValue = [props objectForKey: @"subTitleColor"];
+    
     NSNumber *duration = [props objectForKey: @"duration"];
     NSNumber *enableProgress = [props objectForKey: @"enableProgress"];
     NSString *tintColorValue = [props objectForKey: @"tintColor"];
@@ -40,8 +40,9 @@ RCT_EXPORT_METHOD(Show:(NSDictionary *)props onClick:(RCTResponseSenderBlock)onC
     
     UIColor *tintColor = nil;
     UIColor *titleColor = nil;
+    UIColor *subTitleColor = nil;
     
-//    CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
+    //    CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
     
     if (icon != nil && [icon count] > 0 && [withIcon intValue] == 1) {
         drawable = [self generateVectorIcon: icon];
@@ -50,10 +51,13 @@ RCT_EXPORT_METHOD(Show:(NSDictionary *)props onClick:(RCTResponseSenderBlock)onC
         tintColor = [RNNotificationBanner ColorFromHexCode: tintColorValue];
     }
     if (drawable != nil) {
-//        style.imageSize = drawable.size;
+        //        style.imageSize = drawable.size;
     }
     if (titleColorValue != nil && [titleColorValue length] > 0) {
         titleColor = [RNNotificationBanner ColorFromHexCode: titleColorValue];
+    }
+    if (subTitleColorValue != nil && [subTitleColorValue length] > 0) {
+        subTitleColor = [RNNotificationBanner ColorFromHexCode: subTitleColorValue];
     }
     //    if (titleSize != 0) {
     //        style.titleFont = [UIFont systemFontOfSize: [titleSize intValue]];
@@ -80,7 +84,7 @@ RCT_EXPORT_METHOD(Show:(NSDictionary *)props onClick:(RCTResponseSenderBlock)onC
         _onClickCallback = nil;
         _onHideCallback = nil;
     };
-
+    
     if ([duration intValue] == 0) {
         [_banner show];
     } else {
@@ -145,4 +149,4 @@ RCT_EXPORT_METHOD(Dismiss) {
 }
 
 @end
-  
+
