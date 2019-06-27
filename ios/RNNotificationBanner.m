@@ -65,6 +65,9 @@ RCT_EXPORT_METHOD(Show:(NSDictionary *)props onClick:(RCTResponseSenderBlock)onC
         _banner.titleLabel.textColor = titleColor;
         _banner.detailLabel.textColor = titleColor;
     }
+    if (subTitleColor != nil) {
+        _banner.detailLabel.textColor = subTitleColor;
+    }
     _banner.didTapBlock = ^{
         if (_onClickCallback != nil) _onClickCallback(@[]);
         

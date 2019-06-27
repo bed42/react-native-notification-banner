@@ -90,10 +90,11 @@ public class RNNotificationBannerModule extends ReactContextBaseJavaModule {
     Alerter alerter = Alerter.create(getCurrentActivity());
       alerter = alerter.setTitle(title);
       alerter = alerter.setText(subTitle);
-
+      
       if (iconDrawable != null && enableProgress == false) {
         alerter = alerter.setIcon(iconDrawable);
-      } else {
+        alerter = alerter.setIconColorFilter(0);
+            } else {
         alerter = alerter.hideIcon();
       }
 
